@@ -46,6 +46,11 @@ export default {
   async fetch(request, env, ctx): Promise<Response> {
     const url = new URL(request.url);
     const teamId = parseInt(url.pathname.substring(1), 10);
+    if (!teamId) {
+      return new Response("Not found", {
+        status: 404,
+      });
+    }
 
     // Fetch cal info for team
     const teamCalendarResponse = await fetch(
