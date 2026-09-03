@@ -105,7 +105,14 @@ export class MatchDetails extends WorkerEntrypoint {
         },
       },
     });
-    return new Response(JSON.stringify(matchDetails.data.matchDetail.location));
+    return new Response(
+      JSON.stringify(matchDetails.data.matchDetail.location),
+      {
+        headers: {
+          "Cache-Control": `public, max-age=${7 * 24 * 60 * 60}`,
+        },
+      },
+    );
   }
 }
 
@@ -117,6 +124,7 @@ export default {
 
     const headers = new Headers();
     headers.set("Content-Type", "text/calendar");
+    headers.set("Cache-Control", `public, max-age=${60 * 60}`);
 
     const teamCalendar = await graphql<TeamCalendarResponse>({
       operationName: "GetTeamCalendar",
