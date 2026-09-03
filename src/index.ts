@@ -194,7 +194,7 @@ export default {
       lines.push(`DESCRIPTION:${match.series.name}`);
       lines.push(
         foldLine(
-          `LOCATION:${location.address}, ${location.postalCode} ${location.city}`,
+          `LOCATION:${location.name}, ${location.address}, ${location.postalCode} ${location.city}`,
         ),
       );
       lines.push(`URL:https://www.rbfa.be/nl/wedstrijd/${match.id}`);
